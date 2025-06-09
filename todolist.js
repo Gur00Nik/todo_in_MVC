@@ -1,6 +1,8 @@
 const model = {
   tasks: [],
 
+  countNoCompletedTasks: 0,
+
   addTask(titleTask) {
     const newTask = {
       id: Date.now() + Math.floor(Math.random() + 1 * 10),
@@ -11,16 +13,33 @@ const model = {
     this.tasks.push(newTask);
 
     view.renderTasks(this.tasks);
+    this.calcNoCompletedTasks();
   },
 
   deleteTask(id) {
     this.tasks = this.tasks.filter((item) => item.id !== id);
     view.renderTasks(this.tasks);
+    this.calcNoCompletedTasks();
   },
 
   deleteAll() {
     this.tasks = [];
     view.renderTasks(this.tasks);
+    this.calcNoCompletedTasks();
+  },
+
+  calcNoCompletedTasks() {
+    this.countNoCompletedTasks = 0;
+    this.tasks.forEach((task) => {
+      if (!task.isDone) {
+        this.countNoCompletedTasks += 1;
+      }
+    });
+    // console.log(
+    //   `Вызвана функция увеличивающая счетчик, знаечние счетчика ${this.countNoCompletedTasks} `
+    // );
+
+    view.renderCount(this.countNoCompletedTasks);
   },
 
   toggleStatus(id) {
@@ -30,6 +49,8 @@ const model = {
       }
       return item;
     });
+
+    this.calcNoCompletedTasks();
 
     // const findItem = this.tasks.find((item) => item.id === id);
 
@@ -41,6 +62,8 @@ const model = {
 
 const view = {
   list: document.querySelector(".list"),
+
+  countNoCompletedTasks: document.querySelector(".not-completed-count"),
 
   renderTasks(tasks) {
     let taskHTML = "";
@@ -59,8 +82,13 @@ const view = {
     });
   },
 
+  renderCount(count) {
+    this.countNoCompletedTasks.textContent = count;
+  },
+
   init() {
     this.renderTasks(model.tasks);
+    this.renderCount(model.countNoCompletedTasks);
 
     const INPUT = document.querySelector(".input");
     const DELETE_ALL_BTN = document.querySelector(".delete-all");
