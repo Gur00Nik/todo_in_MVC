@@ -1,0 +1,10 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+}
+
+.done .task-title {
+  text-decoration: line-through;
+}

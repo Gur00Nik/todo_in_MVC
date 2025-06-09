@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>TO-DO by MVC-pattern</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 class="title">Todolist 📝</h1>
+      <h2>
+        Количество невыполненных задач <b class="not-completed-count"></b>
+      </h2>
+      <!-- Форма для добавления новых задач -->
+      <form class="form" name="todolist">
+        <input
+          type="text"
+          class="input"
+          placeholder="Введите задачу"
+          name="task"
+        />
+        <button type="submit" class="add-button">Добавить ➕</button>
+        <button class="delete-all">Удалить все</button>
+      </form>
+
+      <ul class="list">
+        <!-- Сюда будут добавляться задачи -->
+      </ul>
+    </div>
+
+    <!-- Логика нашего приложения будет размещена в этом файле -->
+    <script src="todolist.js"></script>
+  </body>
+</html>
