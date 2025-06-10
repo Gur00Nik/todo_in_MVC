@@ -90,12 +90,16 @@ const view = {
     this.renderTasks(model.tasks);
     this.renderCount(model.countNoCompletedTasks);
 
+    const FORM = document.querySelector(".form");
     const INPUT = document.querySelector(".input");
     const DELETE_ALL_BTN = document.querySelector(".delete-all");
     const ADD_TASK_BTN = document.querySelector(".add-button");
 
-    ADD_TASK_BTN.addEventListener("click", (event) => {
+    FORM.addEventListener("click", (event) => {
       event.preventDefault();
+    });
+
+    ADD_TASK_BTN.addEventListener("click", (event) => {
       const titleTask = INPUT.value;
 
       controller.addTask(titleTask);
@@ -103,7 +107,7 @@ const view = {
       INPUT.value = "";
     });
 
-    DELETE_ALL_BTN.addEventListener("click", () => {
+    DELETE_ALL_BTN.addEventListener("click", (event) => {
       controller.deleteAll();
     }),
       view.list.addEventListener("click", (event) => {
@@ -141,4 +145,4 @@ function init() {
   view.init();
 }
 
-init();
+document.addEventListener("DOMContentLoaded", init());

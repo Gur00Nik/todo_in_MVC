@@ -5,6 +5,11 @@
   gap: 10px;
 }
 
+.delete-button,
+.task-title {
+  cursor: pointer;
+}
+
 .done .task-title {
   text-decoration: line-through;
 }
